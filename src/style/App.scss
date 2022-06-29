@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+    // outline: 1px solid red;
+}
+
+.App {
+    height: 100vh;
+
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+    gap: 20px;
+    flex-flow: column;
+
+    padding: 60px 0px;
+
+
+    input[ type=search] {
+
+        width: 500px;
+        height: 50px;
+        padding: 20px;
+
+    }
+
+    input[type=search]::-webkit-search-cancel-button {
+        -webkit-appearance: searchfield-cancel-button;
+    }
+
+    .launches-container {
+        width: 500px;
+        height: 100%;
+
+        position: relative;
+        padding: 10px;
+
+        display: flex;
+        flex-flow: column;
+        gap: 15px;
+
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        .launch {
+            width: 100%;
+            height: fit-content;
+            
+            display: flex;
+            flex-flow: column;
+            gap: 20px;
+
+            opacity: 0;
+
+            padding: 20px;
+
+            box-shadow: 0px 3px 3px 0px rgba(128, 128, 128, 0.438);
+
+            animation: fade-in 0.5s forwards;
+
+            @keyframes fade-in {
+                from {
+                    opacity: 0;
+                } to {
+                    opacity: 1;
+                }
+            }
+
+            .mission-header {
+
+                    width: 100%;
+                    height: fit-content;
+
+                    display: flex;
+                    justify-content: space-between;
+
+                .mission-name {
+                    font-family: 'Roboto', sans-serif;
+                    font-weight: 700;
+                }
+    
+                .mission-status {
+                    padding: 4px 8px;
+
+                    border-radius: 10px;
+    
+                    font-family: monospace;
+    
+                    &--upcoming {
+                        background-color: cyan;
+                    }
+    
+                    &--failed {
+                        background-color: rgb(228, 94, 94);
+                        color: white;
+                    }
+                    
+                    &--success {
+                        background-color: rgb(47, 204, 47);
+                        color: white;
+                    }
+                }
+            }
+
+            .mission-details {
+                display: none;
+                flex-flow: column;
+                gap: 20px;
+
+                .details-top, .details-bottom {
+                    display: flex;
+                    gap: 20px;
+                }
+
+                .details-top {
+                    gap: 10px;
+                }
+
+                img {
+                    width: 128px;
+                    height: 128px;
+                }
+
+                p {
+                    font-family: 'Roboto', sans-serif;
+                }
+
+                &.show {
+                    display: flex;
+                }
+            }
+
+            .mission-details-button {
+                width: fit-content;
+                padding: 6px 12px;
+
+                outline: none;
+                border: none;
+                border-radius: 2px;
+
+                font-size: 16px;
+                font-family: 'Roboto', sans-serif;
+                font-weight: 700;
+                text-transform: uppercase;
+
+                color: white;
+                background-color: rgb(69, 122, 153);
+            }
+
+        }
+
+        .loader {
+            width: 100%;
+            height: 40px;
+
+            position: relative;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            // background-color: gray;
+
+            &.end-of-list {
+                &::before {
+                    content: 'End of list';
+    
+                    display: inline-block;
+                }
+            }
+
+
+            .loader-spin {
+                width: 40px;
+                height: 40px;
+    
+                border: 4px solid rgb(190, 190, 190);
+                border-top: 4px solid rgb(83, 148, 179);
+
+                border-radius: 50%;
+
+                opacity: 0;
+
+                transition: opacity 1s;
+
+                &.show {
+
+                    animation: spin 1s linear infinite;
+                    opacity: 1;
+
+                }
+
+                @keyframes spin {
+                    from {
+                        transform: rotate(0deg);
+                    } to {
+                        transform: rotate(360deg);
+                    }
+                }
+            }
+        }
+    }
+
+}
